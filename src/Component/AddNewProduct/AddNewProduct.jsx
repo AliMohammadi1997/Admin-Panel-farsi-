@@ -65,12 +65,12 @@ const AddNewProduct = () => {
     }
 
     return (
-        <div className="mt-12">
+        <div className="mt-6 md:mt-12 w-full">
             <ToastContainer />
-            <h1 className="text-2xl ">افزودن محصول جدید</h1>
+            <h1 className="text-sm md:text-2xl ">افزودن محصول جدید</h1>
 
-            <form action="#" onSubmit={addNewProducts} className="mt-5 bg-white flex flex-col items-end p-5 rounded-xl">
-                <div className="w-full grid grid-cols-2 gap-x-5 gap-y-3 ">
+            <form action="#" onSubmit={addNewProducts} className="mt-5 bg-white flex flex-col items-end p-5 rounded-xl w-full">
+                <div className="w-full grid grid-cols-1 sm:grid-cols-2 gap-x-5 gap-y-3 ">
                     <div className="add-form-group">
                         <input
                             className="add-form-input"
@@ -136,7 +136,7 @@ const AddNewProduct = () => {
                     </div>
                 </div>
                 <button
-                    className="bg-blue1 text-white mt-2 p-2 rounded-lg"
+                    className="bg-blue1 text-white text-xs md:text-lg mt-2 p-2 rounded-lg"
                     onClick={(e) => addNewProducts(e)}
                 >
                     ثبت محصول

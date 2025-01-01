@@ -1,4 +1,5 @@
 /** @type {import('tailwindcss').Config} */
+import { plugin } from 'postcss'
 export default {
     content: [
         "./index.html",
@@ -44,11 +45,14 @@ export default {
                 5:'5',
                6 :'6',
                 7:'7'
-              }
+              },
+
+              fontFamily:{
+                'nazanin' : ['B-Nazanin']
+              },
 
         },
     },
-    plugins: [
 
-    ],
+    plugins: [plugin],
 }

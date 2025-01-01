@@ -16,7 +16,7 @@ const Orders = () => {
     const [isShowRejectModal, setIsShowRejectModal] = useState(false)
     const [isShowEditModal, setIsShowEditModal] = useState(false)
     const [orderId, setOrderId] = useState(null)
-    const [infosOrder, setInfosOrdre] = useState({})
+    const [infosOrder, setInfosOrder] = useState({})
 
     const [orderNewProductID, setOrderNewProductID] = useState('')
     const [orderNewName, setOrderNewName] = useState('')
@@ -39,6 +39,11 @@ const Orders = () => {
                 setIsShowDeleteModal(false)
                 toast.success('سفارش با موفقیت حذف شد')
             })
+            .catch(error => {
+                console.error(error);
+                setIsShowDeleteModal(false);
+                toast.error('خطا در حذف سفارش');
+            });
     }
 
     // accept order
@@ -46,7 +51,6 @@ const Orders = () => {
     const cancelOrder = () => { setIsShowAcceptModal(false) }
 
     const acceptOrder = () => {
-
         axios.put(`http://localhost:8000/api/orders/active-order/${orderId}/1`)
             .then(res => {
                 console.log(res);
@@ -54,6 +58,11 @@ const Orders = () => {
                 setIsShowAcceptModal(false)
                 toast.success('سفارش تایید شد')
             })
+            .catch(error => {
+                console.error(error);
+                setIsShowAcceptModal(false);
+                toast.error('خطا در تایید سفارش');
+            });
     }
 
     // reject order
@@ -68,13 +77,17 @@ const Orders = () => {
                 setIsShowRejectModal(false)
                 toast.success('سفارش رد شد')
             })
-
+            .catch(error => {
+                console.error(error);
+                setIsShowRejectModal(false);
+                toast.error('خطا در رد سفارش');
+            });
     }
 
     // edit order
 
-    const editOrder = (e) => {
-        e.preventDefault()
+    const editOrder = async (e) => {
+        e.preventDefault();
 
         const orderNewInfo = {
             productID: orderNewProductID,
@@ -84,104 +97,107 @@ const Orders = () => {
             count: orderNewCount,
             off: orderNewOff,
             sale: orderNewSale
+        };
+
+        try {
+            const res = await axios.put(`http://localhost:8000/api/orders/${orderId}`, orderNewInfo);
+            console.log(res);
+            fetchData();
+            setIsShowEditModal(false);
+            toast.success('سفارش با موفقیت ویرایش شد');
+        } catch (error) {
+            console.error(error);
+            toast.error('خطا در ویرایش سفارش');
         }
 
-        axios.put(`http://localhost:8000/api/orders/${orderId}`, orderNewInfo)
-            .then(res => {
-                console.log(res);
-                fetchData();
-                setIsShowEditModal(false)
-                toast.success('سفارش با موفقیت ویرایش شد')
-            })
-
         console.log(orderNewInfo);
-
     }
 
 
     return (
         <div className='mt-10 p-5'>
-            <h1 className='mb-5 text-3xl'>سفارش ها</h1>
+            <h1 className='mb-5 text-sm md:text-2xl'>سفارش ها</h1>
             {allData.length ? (
+                <div className="overflow-x-auto">
+                    <table className="min-w-full bg-white cms-table">
+                        <thead>
+                            <tr>
+                                <th>آیدی سفارش</th>
+                                <th>نام کاربر</th>
+                                <th>هزینه سفارش</th>
+                                <th>وضعیت سفارش</th>
+                                <th>ساعت و تاریخ سفارش</th>
+                            </tr>
+                        </thead>
 
-                <table className="cms-table">
-                    <thead>
-                        <tr>
-                            <th>آیدی سفارش</th>
-                            <th>نام کاربر</th>
-                            <th>هزینه سفارش</th>
-                            <th>وضعیت سفارش</th>
-                            <th>ساعت و تاریخ سفارش</th>
-                        </tr>
-                    </thead>
-
-                    <tbody>
-                        {
-                            allData.map(order => (
-                                <tr key={order.id}>
-                                    <td>{order.productID}</td>
-                                    <td>{order.name}</td>
-                                    <td>{order.sale.toLocaleString('fa-IR')}</td>
-                                    <td>پرداخت نشده</td>
-                                    <td>{order.hour} <br /> {order.date}</td>
-                                    <td>
-                                        {order.isActive === 0 ? (
-                                            <button
-                                                onClick={() => {
-                                                    setIsShowAcceptModal(true)
-                                                    setOrderId(order.id)
-                                                }}
-                                            > تایید
-                                            </button>
-                                        )
-                                            : (
+                        <tbody>
+                            {
+                                allData.map(order => (
+                                    <tr key={order.id}>
+                                        <td>{order.productID}</td>
+                                        <td>{order.name}</td>
+                                        <td>{order.sale.toLocaleString('fa-IR')}</td>
+                                        <td>پرداخت نشده</td>
+                                        <td>{order.hour} <br /> {order.date}</td>
+                                        <td>
+                                            {order.isActive === 0 ? (
                                                 <button
                                                     onClick={() => {
-                                                        setIsShowRejectModal(true)
+                                                        setIsShowAcceptModal(true)
                                                         setOrderId(order.id)
                                                     }}
-                                                > رد
+                                                > تایید
                                                 </button>
                                             )
-                                        }
+                                                : (
+                                                    <button
+                                                        onClick={() => {
+                                                            setIsShowRejectModal(true)
+                                                            setOrderId(order.id)
+                                                        }}
+                                                    > رد
+                                                    </button>
+                                                )
+                                            }
 
-                                        <button
-                                            onClick={() => {
-                                                setIsShowDetailsModal(true);
-                                                setInfosOrdre(order)
-                                            }}
-                                        > جزئیات
-                                        </button>
+                                            <button
+                                                onClick={() => {
+                                                    setIsShowDetailsModal(true);
+                                                    setInfosOrder(order)
+                                                }}
+                                            > جزئیات
+                                            </button>
 
-                                        <button
-                                            onClick={() => {
-                                                setIsShowEditModal(true)
-                                                setOrderId(order.id)
+                                            <button
+                                                onClick={() => {
+                                                    setIsShowEditModal(true)
+                                                    setOrderId(order.id)
 
-                                                setOrderNewProductID(order.productID)
-                                                setOrderNewName(order.name)
-                                                setOrderNewAddress(order.address)
-                                                setOrderNewPrice(order.price)
-                                                setOrderNewCount(order.count)
-                                                setOrderNewOff(order.off)
-                                                setOrderNewSale(order.sale)
-                                            }}
-                                        > ویرایش
-                                        </button>
+                                                    setOrderNewProductID(order.productID)
+                                                    setOrderNewName(order.name)
+                                                    setOrderNewAddress(order.address)
+                                                    setOrderNewPrice(order.price)
+                                                    setOrderNewCount(order.count)
+                                                    setOrderNewOff(order.off)
+                                                    setOrderNewSale(order.sale)
+                                                }}
+                                            > ویرایش
+                                            </button>
 
-                                        <button
-                                            onClick={() => {
-                                                setIsShowDeleteModal(true);
-                                                setOrderId(order.id)
-                                            }}
-                                        >  حذف
-                                        </button>
-                                    </td>
-                                </tr>
-                            ))
-                        }
-                    </tbody>
-                </table>
+                                            <button
+                                                onClick={() => {
+                                                    setIsShowDeleteModal(true);
+                                                    setOrderId(order.id)
+                                                }}
+                                            >  حذف
+                                            </button>
+                                        </td>
+                                    </tr>
+                                ))
+                            }
+                        </tbody>
+                    </table>
+                </div>
 
             )
                 :
@@ -207,28 +223,30 @@ const Orders = () => {
                 <DetailsModal
                     onColse={() => setIsShowDetailsModal(false)}
                 >
-                    <table className="cms-table">
-                        <thead>
-                            <tr>
-                                <th>   قیمت  </th>
-                                <th>  تعداد سفارش  </th>
-                                <th>   آدرس  </th>
-                                <th>   رضایت   </th>
-                                <th>  تخفیف   </th>
-                            </tr>
-                        </thead>
+                    <div className="overflow-x-auto">
+                        <table className="cms-table">
+                            <thead>
+                                <tr>
+                                    <th>   قیمت  </th>
+                                    <th>  تعداد سفارش  </th>
+                                    <th>   آدرس  </th>
+                                    <th>   رضایت   </th>
+                                    <th>  تخفیف   </th>
+                                </tr>
+                            </thead>
 
-                        <tbody>
-                            <tr >
-                                <td> {infosOrder.price} </td>
-                                <td> {infosOrder.count} </td>
-                                <td> {infosOrder.address} </td>
-                                <td> {infosOrder.popularity} </td>
-                                <td> {infosOrder.off} </td>
+                            <tbody>
+                                <tr >
+                                    <td> {infosOrder.price} </td>
+                                    <td> {infosOrder.count} </td>
+                                    <td> {infosOrder.address} </td>
+                                    <td> {infosOrder.popularity} </td>
+                                    <td> {infosOrder.off} </td>
 
-                            </tr>
-                        </tbody>
-                    </table>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
                 </DetailsModal>
 
             }

@@ -6,10 +6,10 @@ const Products = () => {
 
 
     return (
-        <>
+        <div className='w-full p-4'>
             <AddNewProduct />
             <ProductsTable />
-        </>
+        </div>
     );
 }
 

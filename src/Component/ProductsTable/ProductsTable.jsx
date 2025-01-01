@@ -28,14 +28,16 @@ const ProductsTable = () => {
     const [productNewColors, setProductNewColors] = useState("")
 
     const acceptDeleteProduct = () => {                                //delete product
-
-        const deleteProduct = async () => {
-            await axios.delete(`http://localhost:8000/api/products/${productId}`)
+        try {
+            axios.delete(`http://localhost:8000/api/products/${productId}`)
+            fetchData()
+            setIsShowDeleteModal(false);
+            toast.error('محصول با موفقیت حذف شد')
+        } catch (error) {
+            console.error(error);
+            setIsShowDeleteModal(false);
+            toast.error('خطا در حذف محصول');
         }
-        deleteProduct()
-        fetchData()
-        setIsShowDeleteModal(false);
-        toast.error('محصول با موفقیت حذف شد')
     }
 
     const cancelDeleteProduct = () => {
@@ -46,9 +48,8 @@ const ProductsTable = () => {
         setIsShowDetailModal(false)
     }
 
-    const updateProductInfo = (event) => {
+    const updateProductInfo = async (event) => {
         event.preventDefault()
-
 
         const producNewtInfos = {
             title: productNewTitle,
@@ -60,31 +61,26 @@ const ProductsTable = () => {
             sale: productNewSale
         }
 
-        const EditProduct = async () => {
-            try {
-                await axios.put(`http://localhost:8000/api/products/${productId}`, producNewtInfos)
-
-            } catch (error) {
-                console.log(error);
-            }
+        try {
+            await axios.put(`http://localhost:8000/api/products/${productId}`, producNewtInfos)
+            fetchData()
+            setIsShowEditModal(false)
+            toast.success('اطلاعات با موفقیت ویرایش شد')
+        } catch (error) {
+            console.error(error);
+            toast.error('خطا در ویرایش اطلاعات محصول');
         }
-
-        EditProduct()
-        fetchData()
-        setIsShowEditModal(false)
-        toast.success('اطلاعات با موفقیت ویرایش شد')
     }
 
 
-    const reversData = allData.reverse()
     return (
 
         <>
             <ToastContainer />
 
-            <h2 className='text-xl mt-5'>لیست محصولات</h2>
-            {
-                allData.length ? (
+            <h2 className='text-sm md:text-xl mt-5'>لیست محصولات</h2>
+            {allData.length ? (
+                <div className='overflow-x-auto'>
                     <table className="products-table bg-white w-full mt-7 rounded-lg ">
                         <thead>
                             <tr className="text-center flex justify-between pr-24 pl-80">
@@ -97,10 +93,10 @@ const ProductsTable = () => {
 
                         <tbody>
                             {
-                                reversData.map(product => (
+                                allData.reverse().map(product => (
                                     <tr key={product.id} className="text-center flex justify-between px-4 mt-5">
                                         <td>
-                                            <img src={product.img} alt={product.title} className="w-32 object-cover " />
+                                            <img src={product.img} alt={product.title} className="w-20 md:w-32 object-cover " />
                                         </td>
                                         <td> {product.title} </td>
                                         <td> {product.price.toLocaleString('fa-IR')}  </td>
@@ -149,8 +145,9 @@ const ProductsTable = () => {
 
                         </tbody>
                     </table>
-                )
-                    : (<ErrorBox msg="هیچ محصولی یافت نشد" />)
+                </div>
+            )
+                : (<ErrorBox msg="هیچ محصولی یافت نشد" />)
             }
 
             {/* delete modal */}
@@ -166,27 +163,29 @@ const ProductsTable = () => {
 
             {isShowDetailModal &&
                 <DetailsModal onColse={closeDetailsModal} >
-                    <table className="cms-table ">
-                        <thead>
-                            <tr >
-                                <th> اسم </th>
-                                <th>قیمت</th>
-                                <th>محبوبیت</th>
-                                <th>رنگ بندی</th>
-                                <th> میزان فروش</th>
-                            </tr>
-                        </thead>
+                    <div className='overflow-x-auto'>
+                        <table className="cms-table ">
+                            <thead>
+                                <tr >
+                                    <th> اسم </th>
+                                    <th>قیمت</th>
+                                    <th>محبوبیت</th>
+                                    <th>رنگ بندی</th>
+                                    <th> میزان فروش</th>
+                                </tr>
+                            </thead>
 
-                        <tbody>
-                            <tr>
-                                <td>{productInfos.title}</td>
-                                <td>{productInfos.price.toLocaleString('fa-IR')}</td>
-                                <td>{productInfos.popularity}</td>
-                                <td>{productInfos.colors}</td>
-                                <td>{productInfos.sale.toLocaleString('fa-IR')}</td>
-                            </tr>
-                        </tbody>
-                    </table>
+                            <tbody>
+                                <tr>
+                                    <td>{productInfos.title}</td>
+                                    <td>{productInfos.price.toLocaleString('fa-IR')}</td>
+                                    <td>{productInfos.popularity}</td>
+                                    <td>{productInfos.colors}</td>
+                                    <td>{productInfos.sale.toLocaleString('fa-IR')}</td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
                 </DetailsModal>
             }
 
@@ -208,7 +207,7 @@ const ProductsTable = () => {
                         />
                     </div>
                     <div className="edit-container">
-                    <MdOutlineEditNote className='add-form-icon' />
+                        <MdOutlineEditNote className='add-form-icon' />
                         <input
                             className="edit-input-group"
                             value={productNewPrice.toLocaleString('fa-IR')}
@@ -218,7 +217,7 @@ const ProductsTable = () => {
                         />
                     </div>
                     <div className="edit-container">
-                    <MdOutlineEditNote className='add-form-icon' />
+                        <MdOutlineEditNote className='add-form-icon' />
                         <input
                             className="edit-input-group"
                             value={productNewCount}
@@ -228,7 +227,7 @@ const ProductsTable = () => {
                         />
                     </div>
                     <div className="edit-container">
-                    <MdOutlineEditNote className='add-form-icon' />
+                        <MdOutlineEditNote className='add-form-icon' />
                         <input
                             className="edit-input-group"
                             value={productNewImg}
@@ -238,7 +237,7 @@ const ProductsTable = () => {
                         />
                     </div>
                     <div className="edit-container">
-                    <MdOutlineEditNote className='add-form-icon' />
+                        <MdOutlineEditNote className='add-form-icon' />
                         <input
                             className="edit-input-group"
                             value={productNewPopularity}
@@ -248,7 +247,7 @@ const ProductsTable = () => {
                         />
                     </div>
                     <div className="edit-container">
-                    <MdOutlineEditNote className='add-form-icon' />
+                        <MdOutlineEditNote className='add-form-icon' />
                         <input
                             className="edit-input-group"
                             value={productNewColors}
@@ -258,7 +257,7 @@ const ProductsTable = () => {
                         />
                     </div>
                     <div className="edit-container">
-                    <MdOutlineEditNote className='add-form-icon' />
+                        <MdOutlineEditNote className='add-form-icon' />
                         <input
                             className="edit-input-group"
                             value={productNewSale.toLocaleString('fa-IR')}
