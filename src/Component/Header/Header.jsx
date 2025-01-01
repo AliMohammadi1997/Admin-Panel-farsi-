@@ -26,10 +26,10 @@ const Header = ({ toggleBtn }) => {
                         <input
                             type="text"
                             placeholder='جست و جو کنید...'
-                            className="font-nazanin border-none outline-none pr-3 bg-inherit w-full h-5 md:h-8 lg:h-10 text-xs md:text-base rounded-xl" />
+                            className="font-nazanin border-none outline-none pr-3 bg-inherit w-full h-5 md:h-8 lg:h-10 text-xs md:text-base lg:text-xl rounded-xl" />
 
                         <button
-                            className="py-2 px-1 font-nazanin bg-blue1 rounded-xl w-20 md:w-24 h-6 md:h-8 lg:h-10 text-white1 text-xs md:text-base flex items-center justify-center"
+                            className="py-2 px-1 font-nazanin bg-blue1 rounded-xl w-20 md:w-28 h-6 md:h-8 lg:h-10 text-white1 text-xs md:text-base lg:text-lg flex items-center justify-center"
                         >
                             جست و جو
                         </button>

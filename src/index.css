@@ -227,7 +227,7 @@ html {
 .product-table-btn {
   background-color: var(--blue1);
   border-radius: 10px;
-  font-size: 1rem;
+  font-size: 1.1rem;
   font-family: 'B-Nazanin';
   font-weight: 500;
   color: white;
@@ -276,7 +276,7 @@ html {
 .cms-table button {
   background-color: var(--blue1);
   border-radius: 10px;
-  font-size: 1rem;
+  font-size: 1.1rem;
   font-family: 'B-Nazanin';
   color: white;
   padding: 8px 10px;
@@ -307,7 +307,7 @@ html {
   background-color: unset;
   border: none;
   outline: none;
-  font-size: 12px;
+  font-size: 1rem;
   width: 100%;
   padding: 5px 10px;
   display: flex;
@@ -325,7 +325,7 @@ html {
     padding: 0 10px;
   }
   .edit-input-group {
-    font-size: 10px;
+    font-size: 0.7rem;
     width: 100%;
     padding: 2px 5px;
   }

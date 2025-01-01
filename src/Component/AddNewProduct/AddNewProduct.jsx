@@ -136,7 +136,7 @@ const AddNewProduct = () => {
                     </div>
                 </div>
                 <button
-                    className="bg-blue1 text-white text-xs md:text-lg mt-2 p-2 rounded-lg"
+                    className="bg-blue1 text-white text-xs md:text-sm mt-2 p-2 rounded-lg"
                     onClick={(e) => addNewProducts(e)}
                 >
                     ثبت محصول

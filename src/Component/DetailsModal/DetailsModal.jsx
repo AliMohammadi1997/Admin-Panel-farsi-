@@ -19,7 +19,7 @@ const DetailsModal = ({ onColse,children }) => {
         <div className="modal-parent active">
             <div className="p-7 bg-white text-sm  md:text-lg m-4">
           {children}
-          <button onClick={() => onColse()} className=' text-xs md:text-lg mt-5 w-full p-2 bg-blue1 text-white'> بستن </button>
+          <button onClick={() => onColse()} className=' text-xs md:text-sm mt-5 w-full p-2 bg-blue1 text-white'> بستن </button>
             </div>
         </div>
     );
