@@ -180,7 +180,7 @@ html {
   align-items: center;
   font-size: 1rem;
   position: relative;
-  padding: 15px;
+  padding: 1rem;
 }
 
 .sidebar-links a.active {
@@ -191,11 +191,11 @@ html {
 .add-form-group {
   display: flex;
   align-items: center;
-  column-gap: 10px;
+  column-gap: 0.7rem;
   width: 100%;
   background-color: var(--white2);
   border-radius: 5px;
-  padding: 5px 20px;
+  padding: 0.3rem 1.3rem;
 }
 
 .add-form-input {
@@ -204,10 +204,11 @@ html {
   background: inherit;
   color: rgb(37, 37, 37);
   width: 100%;
+  font-size: 1.1rem;
 }
 
 .add-form-icon {
-  font-size: 24px;
+  font-size: 1.5rem;
 }
 
 .sidebar-icon {
@@ -215,24 +216,23 @@ html {
 }
 
 .products-table th {
-  padding: 20px;
+  padding: 1.3rem;
 }
 
 .products-table td {
-  padding: 20px;
+  padding: 1.3rem;
   display: flex;
   align-items: center;
 }
 
 .product-table-btn {
   background-color: var(--blue1);
-  border-radius: 10px;
+  border-radius: 0.6rem;
   font-size: 1.1rem;
   font-family: 'B-Nazanin';
-  font-weight: 500;
   color: white;
-  padding: 8px 10px;
-  margin-left: 5px;
+  padding: 0.5rem 0.6rem;
+  margin-left: 0.3rem;
 }
 
 .modal-parent {
@@ -263,24 +263,25 @@ html {
   width: 100%;
   font-size: 1rem;
   border: none;
-  padding: 10px 0;
-  margin-top: 10px;
+  padding: 0.6rem 0;
+  margin-top: 0.6rem;
 }
 
 .cms-table {
   width: 100%;
   background-color: white;
-  border-radius: 10px;
+  border-radius: 0.6rem;
 }
 
 .cms-table button {
   background-color: var(--blue1);
-  border-radius: 10px;
+  border-radius: 0.6rem;
   font-size: 1.1rem;
   font-family: 'B-Nazanin';
   color: white;
-  padding: 8px 10px;
-  margin-left: 5px;
+  padding: 0.5rem 0.6rem;
+  margin-left: 0.3rem;
+  margin-bottom: 0.3rem;
 }
 
 .cms-table tr {
@@ -289,15 +290,15 @@ html {
 
 .cms-table td,
 .cms-table th {
-  padding: 20px;
+  padding: 1.3rem;
 }
 
 .edit-container {
-  margin-top: 15px;
+  margin-top: 1rem;
   width: 100%;
   background-color: var(--white2);
-  border-radius: 10px;
-  padding: 0 20px;
+  border-radius: 0.6rem;
+  padding: 0 1.3rem;
   display: flex;
   justify-content: center;
   align-items: center;
@@ -309,59 +310,79 @@ html {
   outline: none;
   font-size: 1rem;
   width: 100%;
-  padding: 5px 10px;
+  padding: 0.3rem 0.6rem;
   display: flex;
   flex: row;
 }
 
-@media (max-width: 768px) {
-  .add-form-input {
-    font-size: 12px;
-  }
-
-  .edit-container {
-    margin-top: 10px;
-    border-radius: 10px;
-    padding: 0 10px;
-  }
-  .edit-input-group {
-    font-size: 0.7rem;
-    width: 100%;
-    padding: 2px 5px;
-  }
-
-  .add-form-icon {
-    font-size: 12px;
-  }
-
-  .cms-table button {
-    font-size: 0.7rem;
-    font-family: 'B-Nazanin';
-    padding: 4px 5px;
-    margin-left: 2px;
-  }
-
-  .cms-table td,
-  .cms-table th {
-    padding: 10px;
-    font-size: 12px;
-  }
-
-  .sidebar-links a {
-    font-size: 0.8rem;
-    padding: 7px;
-  }
-
-
-.products-table th,
-  .products-table td {
- font-size: 12px;
-  }
-
-  .product-table-btn {
-    font-size: 0.7rem;
-    font-family: 'B-Nazanin';
-    padding: 6px 8px;
-    margin-left: 3px;
+@media (max-width: 320px) {
+  html {
+    font-size: 8px;
   }
 }
+
+@media (min-width: 320px) and (max-width: 425px) {
+  html {
+    font-size: 10px;
+  }
+}
+
+@media (min-width: 425px) and (max-width: 768px) {
+  html {
+    font-size: 12px;
+  }
+}
+
+/* @media (max-width: 425px) {
+        html {
+          font-size: 9px;
+        }
+        /* .add-form-input {
+          font-size: 12px;
+        }
+
+        .edit-container {
+          margin-top: 10px;
+          border-radius: 10px;
+          padding: 0 10px;
+        }
+        .edit-input-group {
+          font-size: 0.7rem;
+          width: 100%;
+          padding: 2px 5px;
+        }
+
+        .add-form-icon {
+          font-size: 12px;
+        }
+
+        .cms-table button {
+          font-size: 0.7rem;
+          font-family: 'B-Nazanin';
+          padding: 4px 5px;
+          margin-left: 2px;
+        }
+
+        .cms-table td,
+        .cms-table th {
+          padding: 10px;
+          font-size: 12px;
+        }
+
+        .sidebar-links a {
+          font-size: 0.8rem;
+          padding: 7px;
+        }
+
+        .products-table th,
+        .products-table td {
+          font-size: 12px;
+        }
+
+        .product-table-btn {
+          font-size: 0.7rem;
+          font-family: 'B-Nazanin';
+          padding: 6px 8px;
+          margin-left: 3px;
+        } */
+/* } */

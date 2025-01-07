@@ -75,7 +75,7 @@ const Users = () => {
 
   return (
     <div className='mt-5 md:mt-10 p-5'>
-      <h1 className='mb-5 text-sm md:text-2xl'> کاربران</h1>
+      <h1 className='mb-5 text-xl'> کاربران</h1>
 
       {allData.length ? (
         <div className='overflow-x-auto'>
