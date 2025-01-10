@@ -1,8 +1,46 @@
-# React + Vite
+# Dashboard Admin (CMS)
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+A fully responsive and feature-rich admin dashboard built with React, JavaScript, and Tailwind CSS for the front-end and MySQL for the back-end. This dashboard is designed to manage and visualize data efficiently.
+---
 
-Currently, two official plugins are available:
+## 📋 Features
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react/README.md) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+- Responsive Design: Seamlessly adapts to different screen sizes.  
+- Customizable Components: Reusable React components styled with Tailwind CSS.  
+- Database Integration: Powered by MySQL for back-end operations.  
+- Interactive Visuals: Dynamic charts and data tables.  
+- Modern Tools: Utilizes modern web development technologies for high performance.  
+
+---
+
+## 🚀 Live Demo
+
+Check out the live version of the project: [Live Demo Link](#)
+
+---
+
+## 🛠️ Technologies Used
+
+### Front-end:
+- JavaScript - Core language for logic and interactions.
+- React.js - Library for building user interfaces.
+- Tailwind CSS - Utility-first CSS framework for styling.
+
+### Back-end:
+- MySQL - Relational database for managing data.
+
+---
+
+## 📦 Installation
+
+Follow the steps below to set up the project locally:
+
+### Prerequisites
+- Node.js and npm installed.
+- MySQL installed and configured.
+
+1. Clone the repository:
+   `bash
+   git clone https://github.com/AliMohammadi1997/Dashboard-Admin-2.git
+
+##Created by Ali Mohammadi
