@@ -14,7 +14,7 @@
 
 ## 🚀 Live Demo
 
-Check out the live version of the project: [Live Demo Link](#)
+Check out the live version of the project: https://dashboard-admin-cms.liara.run/
 
 ---
 
