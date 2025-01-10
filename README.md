@@ -43,4 +43,5 @@ Follow the steps below to set up the project locally:
    `bash
    git clone https://github.com/AliMohammadi1997/Dashboard-Admin-2.git
 
-## Created by Ali Mohammadi
+## Created by
+Ali Mohammadi
