@@ -103,15 +103,6 @@ const AddNewProduct = () => {
             <input
               className='add-form-input'
               type='text'
-              placeholder='آدرس عکس محصول را بنویسید'
-              value={newProductImg}
-              onChange={e => setNewProductImg(e.target.value)}
-            />
-          </div>
-          <div className='add-form-group'>
-            <input
-              className='add-form-input'
-              type='text'
               placeholder='میزان محبوبیت محصول را بنویسید'
               value={newProductPopularity}
               onChange={e => setNewProductPopularity(e.target.value)}
@@ -133,6 +124,17 @@ const AddNewProduct = () => {
               placeholder='تعداد رنگ بندی محصول را بنویسید'
               value={newProductColors}
               onChange={e => setNewProductColors(e.target.value)}
+            />
+          </div>
+          <div className='w-full bg-inherit'>
+            <input
+              className='add-form-input'
+              type='file'
+              placeholder='آدرس عکس محصول را بنویسید'
+              accept='image/*'
+              onChange={e => {
+                setNewProductImg(e.target.value)
+              }}
             />
           </div>
         </div>

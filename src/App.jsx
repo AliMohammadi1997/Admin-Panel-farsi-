@@ -15,7 +15,7 @@ function App () {
 
   return (
     <>
-      <div className='hidden lg:flex w-full '>
+      <div className=' hidden lg:flex w-full '>
         <Sidebar />
         <div className='flex-5 m-8 '>
           <Header />
