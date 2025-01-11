@@ -2,7 +2,7 @@
   "name": "cms-dashboard",
   "private": true,
   "version": "0.0.0",
-    "homepage": "https://github.com/AliMohammadi1997/Admin-Panel-farsi-.git",
+    "homepage": "https://alimohammadi1997.github.io/Admin-Panel-farsi-/",
   "type": "module",
   "scripts": {
     "dev": "vite",
